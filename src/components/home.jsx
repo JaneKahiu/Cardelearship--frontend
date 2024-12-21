@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="relative">
       {/* Navbar - Fixed at the top */}
@@ -11,14 +17,38 @@ const HomePage = () => {
           <div className="text-3xl font-extrabold tracking-wider">
             <Link to="/" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">CarDealership</Link>
           </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <button
+              onClick={toggleMenu}
+              className="text-white focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+
           {/* Navbar links */}
-          <div className="space-x-8 text-sm md:text-base">
-            <Link to="/cars" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">Cars</Link>
-            <a href="#ourservices" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">Our Services</a>
-            <a href="#about" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">About Us</a>
-            <Link to="/contactus" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">Contact Us</Link>
-            <Link to="/signup" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">Sign Up</Link>
-            <Link to="/login" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">Login</Link>
+          <div className={`lg:flex ${isMenuOpen ? 'block' : 'hidden'} space-y-4 lg:space-y-0 lg:space-x-8`}>
+            <Link to="/cars" className="text-white hover:text-gray-300 transition duration-300 ease-in-out block lg:inline">Cars</Link>
+            <a href="#ourservices" className="text-white hover:text-gray-300 transition duration-300 ease-in-out block lg:inline">Our Services</a>
+            <a href="#about" className="text-white hover:text-gray-300 transition duration-300 ease-in-out block lg:inline">About Us</a>
+            <Link to="/contactus" className="text-white hover:text-gray-300 transition duration-300 ease-in-out block lg:inline">Contact Us</Link>
+            <Link to="/signup" className="text-white hover:text-gray-300 transition duration-300 ease-in-out block lg:inline">Sign Up</Link>
+            <Link to="/login" className="text-white hover:text-gray-300 transition duration-300 ease-in-out block lg:inline">Login</Link>
           </div>
         </div>
       </nav>
@@ -27,7 +57,10 @@ const HomePage = () => {
       <div
         className="min-h-screen bg-cover bg-center flex flex-col justify-center items-center pt-32 text-center relative z-10"
         style={{
-          backgroundImage: "url('/images/06j63xy8rg851.jpg')", // Path to your image
+          backgroundImage: "url('/images/06j63xy8rg851.jpg')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
         }}
       >
         {/* Overlay for better contrast */}
