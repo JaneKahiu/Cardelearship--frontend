@@ -12,7 +12,7 @@ const HomePage = () => {
             <Link to="/" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">CarDealership</Link>
           </div>
           {/* Navbar links */}
-          <div className="space-x-8">
+          <div className="space-x-8 text-sm md:text-base">
             <Link to="/cars" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">Cars</Link>
             <a href="#ourservices" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">Our Services</a>
             <a href="#about" className="text-white hover:text-gray-300 transition duration-300 ease-in-out">About Us</a>
@@ -34,10 +34,10 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
 
         {/* Heading */}
-        <h1 className="text-5xl font-bold text-white z-10 animate__animated animate__fadeIn animate__delay-1s">
+        <h1 className="text-4xl md:text-5xl font-bold text-white z-10 animate__animated animate__fadeIn animate__delay-1s">
           Welcome to Our Car Dealership
         </h1>
-        <p className="mt-4 text-xl text-white z-10 animate__animated animate__fadeIn animate__delay-2s">
+        <p className="mt-4 text-lg md:text-xl text-white z-10 animate__animated animate__fadeIn animate__delay-2s">
           Find your perfect car with us today!
         </p>
         <a
@@ -49,21 +49,21 @@ const HomePage = () => {
       </div>
 
       {/* Our Services Section */}
-      <div id="ourservices" className="py-24 bg-white px-4 sm:px-6 lg:px-8">
+      <div id="ourservices" className="py-16 md:py-24 bg-white px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-extrabold text-black tracking-wide">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-black tracking-wide">
             Our Services
           </h2>
-          <p className="mt-4 text-lg text-black">
+          <p className="mt-4 text-base md:text-lg text-black">
             We offer a wide range of services including car sales, maintenance, and financing options to ensure you have the best car buying experience.
           </p>
         </div>
 
         {/* Service Cards with Hover Effects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mt-8">
           {/* Car Sales Card */}
           <div className="bg-gray-100 shadow-lg rounded-lg p-6 border border-gray-200 transform transition duration-300 hover:scale-105 hover:shadow-xl hover:bg-black hover:text-white">
-            <h3 className="text-2xl font-semibold mb-4">Car Sales</h3>
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">Car Sales</h3>
             <p>
               We offer a wide selection of new and pre-owned cars, helping you find the perfect vehicle for your needs and budget.
             </p>
@@ -71,7 +71,7 @@ const HomePage = () => {
 
           {/* Car Financing Card */}
           <div className="bg-gray-100 shadow-lg rounded-lg p-6 border border-gray-200 transform transition duration-300 hover:scale-105 hover:shadow-xl hover:bg-black hover:text-white">
-            <h3 className="text-2xl font-semibold mb-4">Car Financing</h3>
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">Car Financing</h3>
             <p>
               Our flexible financing options make it easier for you to drive home in the car you want with affordable rates.
             </p>
@@ -79,7 +79,7 @@ const HomePage = () => {
 
           {/* Car Maintenance Card */}
           <div className="bg-gray-100 shadow-lg rounded-lg p-6 border border-gray-200 transform transition duration-300 hover:scale-105 hover:shadow-xl hover:bg-black hover:text-white">
-            <h3 className="text-2xl font-semibold mb-4">Car Maintenance</h3>
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">Car Maintenance</h3>
             <p>
               Keep your vehicle in top shape with our expert maintenance services, from oil changes to complex repairs.
             </p>
@@ -88,10 +88,10 @@ const HomePage = () => {
       </div>
 
       {/* About Us Section */}
-      <div id="about" className="py-24 bg-black text-white">
+      <div id="about" className="py-16 md:py-24 bg-black text-white">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-extrabold">About Us</h2>
-          <p className="mt-4 text-lg">
+          <h2 className="text-3xl md:text-4xl font-extrabold">About Us</h2>
+          <p className="mt-4 text-base md:text-lg">
             We are a trusted car dealership with years of experience, offering a wide variety of vehicles and excellent customer service.
           </p>
         </div>
