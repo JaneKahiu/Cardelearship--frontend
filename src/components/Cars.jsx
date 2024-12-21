@@ -29,46 +29,46 @@ const Cars = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-8">
-      <h2 className="text-3xl font-bold text-center mb-8">Car Listings</h2>
+      <h2 className="text-3xl font-bold text-center text-black mb-8">Car Listings</h2>
       <div className="flex flex-wrap justify-between gap-4 mb-8">
         <input
           type="text"
           placeholder="Make"
           value={make}
           onChange={(e) => setMake(e.target.value)}
-          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
         />
         <input
           type="text"
           placeholder="Model"
           value={model}
           onChange={(e) => setModel(e.target.value)}
-          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
         />
         <input
           type="number"
           placeholder="Year"
           value={year}
           onChange={(e) => setYear(e.target.value)}
-          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
         />
         <input
           type="number"
           placeholder="Min Price"
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
-          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
         />
         <input
           type="number"
           placeholder="Max Price"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
-          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          className="w-full md:w-1/5 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
         />
         <button
           onClick={fetchCars}
-          className="w-full md:w-auto mt-4 md:mt-0 bg-teal-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-teal-600 transition duration-300"
+          className="w-full md:w-auto mt-4 md:mt-0 bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300"
         >
           Search
         </button>
@@ -90,8 +90,8 @@ const Cars = () => {
               />
             )}
             <div className="p-6">
-              <h3 className="text-2xl font-semibold text-teal-600">{car.make} {car.model}</h3>
-              <p className="mt-2 text-lg text-gray-600">
+              <h3 className="text-2xl font-semibold text-black">{car.make} {car.model}</h3>
+              <p className="mt-2 text-lg text-gray-700">
                 Year: {car.year} <br />
                 Price: ${car.price}
               </p>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
 
 const SignupForm = () => {
   const [username, setUsername] = useState('');
@@ -29,9 +30,9 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-black p-6">
       <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md transform transition-all duration-300 hover:scale-105">
-        <h2 className="text-3xl font-bold text-center text-teal-600 mb-6">Create Account</h2>
+        <h2 className="text-3xl font-bold text-center text-black mb-6">Create Account</h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -41,7 +42,7 @@ const SignupForm = () => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300"
+              className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
           </div>
           
@@ -52,7 +53,7 @@ const SignupForm = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300"
+              className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
           </div>
           
@@ -63,19 +64,24 @@ const SignupForm = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300"
+              className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
           </div>
           
           <button
             type="submit"
-            className="w-full py-3 px-4 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 transform hover:scale-105 transition-all duration-300"
+            className="w-full py-3 px-4 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black transform hover:scale-105 transition-all duration-300"
           >
             Sign Up
           </button>
         </form>
 
         {message && <p className="mt-4 text-center text-sm text-red-500">{message}</p>}
+
+        {/* Add link to login page */}
+        <div className="mt-4 text-center text-sm text-black">
+          <p>Already have an account? <Link to="/login" className="font-semibold hover:underline">Login</Link></p>
+        </div>
       </div>
     </div>
   );
