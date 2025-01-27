@@ -8,6 +8,7 @@ import Cars from './components/Cars';
 import ContactUs from './components/contactus';
 import CustomerProfile from './components/CustomerProfile';
 import MakeInquiry from './components/Makeinquiry';
+import UserDashboard from './components/userdashboad';
 
 
 
@@ -22,6 +23,7 @@ const App = () => {
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/customer-profile" element={<CustomerProfile />} />
                 <Route path="/makeinquiry" element={<MakeInquiry />} />
+                <Route path="/userdashboard" element={<UserDashboard />} />
             </Routes>
         </Router>
     );

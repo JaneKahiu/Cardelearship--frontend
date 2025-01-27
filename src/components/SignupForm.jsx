@@ -6,11 +6,18 @@ const SignupForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword,setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = { username, email, password };
+
+    if (password !== confirmPassword) {
+      setMessage("Passwords don't match");
+      return;
+    }
+    const formData = { username, email, password, confirmPassword };
 
     try {
       const response = await axios.post('http://localhost:8000/api/signup/', formData, {
@@ -18,6 +25,7 @@ const SignupForm = () => {
           'Content-Type': 'application/json',
         },
       });
+      console.log(response);
 
       if (response.status === 201) {
         setMessage('Signup successful!');
@@ -64,6 +72,16 @@ const SignupForm = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700"> Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
             />
           </div>
