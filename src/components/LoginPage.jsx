@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
-function LoginPage() {
+function Loginpage() {
   const { loginUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -107,4 +107,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Loginpage;

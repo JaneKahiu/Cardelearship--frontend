@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import * as jwtDecode  from 'jwt-decode'; // Corrected the function name
+import  *as  jwtDecode  from 'jwt-decode';
 import { useNavigate } from "react-router-dom"; 
 import Swal from "sweetalert2"; 
 
@@ -126,7 +126,7 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
-    navigate("/login"); 
+    navigate("/login");
 
     Swal.fire({
       title: "You have been logged out",
