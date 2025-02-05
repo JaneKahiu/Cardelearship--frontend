@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
-import { jwtDecode } from 'jwt-decode'; // Corrected the function name
-import { useNavigate } from "react-router-dom"; // ✅ Replaced useHistory with useNavigate
-import Swal from "sweetalert2"; // ✅ Import correctly
+import * as jwtDecode  from 'jwt-decode'; // Corrected the function name
+import { useNavigate } from "react-router-dom"; 
+import Swal from "sweetalert2"; 
 
 const AuthContext = createContext();
 
@@ -16,12 +16,12 @@ export const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(() =>
     localStorage.getItem("authTokens")
-      ? jwt_decode(JSON.parse(localStorage.getItem("authTokens")).access) // ✅ Use jwt_decode correctly
+      ? jwt_decode(JSON.parse(localStorage.getItem("authTokens")).access) 
       : null
   );
 
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // ✅ Replace useHistory with useNavigate
+  const navigate = useNavigate(); 
 
   const loginUser = async (email, password) => {
     try {
@@ -38,10 +38,10 @@ export const AuthProvider = ({ children }) => {
       if (response.status === 200) {
         console.log("Logged In");
         setAuthTokens(data);
-        setUser(jwt_decode(data.access)); // ✅ Use jwt_decode correctly
+        setUser(jwt_decode(data.access)); 
         localStorage.setItem("authTokens", JSON.stringify(data));
 
-        navigate("/"); // ✅ Replace history.push with navigate
+        navigate("/"); 
         Swal.fire({
           title: "Login Successful",
           icon: "success",
@@ -87,7 +87,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.status === 201) {
-        navigate("/login"); // ✅ Replace history.push with navigate
+        navigate("/login"); 
         Swal.fire({
           title: "Registration Successful, Login Now",
           icon: "success",
@@ -126,7 +126,7 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
-    navigate("/login"); // ✅ Replace history.push with navigate
+    navigate("/login"); 
 
     Swal.fire({
       title: "You have been logged out",
@@ -141,7 +141,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (authTokens) {
-      setUser(jwt_decode(authTokens.access)); // ✅ Use jwt_decode correctly
+      setUser(jwt_decode(authTokens.access)); 
     }
     setLoading(false);
   }, [authTokens]);

@@ -1,16 +1,18 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 function LoginPage() {
   const { loginUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email.length > 0) {
       loginUser(email, password);
+      navigate("/userdashboard");
     }
   };
 
