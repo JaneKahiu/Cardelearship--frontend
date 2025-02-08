@@ -2,154 +2,155 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
-
-
 function RegisterPage() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password1, setPassword1] = useState("");
+  const [password2, setPassword2] = useState("");
 
-  const [email, setEmail] = useState("")
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [password2, setPassword2] = useState("")
+  const { registerUser } = useContext(AuthContext);
 
-  const {registerUser} = useContext(AuthContext)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const firstName = e.target.firstName.value; 
+    const lastName = e.target.lastName.value;   
+    const email = e.target.email.value;
+    const password1 = e.target.password1.value;
+    const password2 = e.target.password2.value;
 
-  console.log(email);
-  console.log(username);
-  console.log(password);
-  console.log(password2);
+    registerUser(firstName, lastName, email, password1, password2); // No username
+  };
 
-
-  const handleSubmit = async e => {
-    e.preventDefault()
-    registerUser(email, username, password, password2)
-  }
-  
-
-  
   return (
-    <div>
-      <>
-        <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>
-          <div className="container py-5 h-100">
-            <div className="row d-flex justify-content-center align-items-center h-100">
-              <div className="col col-xl-10">
-                <div className="card" style={{ borderRadius: "1rem" }}>
-                  <div className="row g-0">
-                    <div className="col-md-6 col-lg-5 d-none d-md-block">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                        alt="login form"
-                        className="img-fluid"
-                        style={{ borderRadius: "1rem 0 0 1rem" }}
-                      />
-                    </div>
-                    <div className="col-md-6 col-lg-7 d-flex align-items-center">
-                      <div className="card-body p-4 p-lg-5 text-black">
-                        <form onSubmit={handleSubmit}>
-                          <div className="d-flex align-items-center mb-3 pb-1">
-                            <i
-                              className="fas fa-cubes fa-2x me-3"
-                              style={{ color: "#ff6219" }}
-                            />
-                            <span className="h2 fw-bold mb-0">
-                              Welcome to <b>Desphixs👋</b>
-                            </span>
-                          </div>
-                          <h5
-                            className="fw-normal mb-3 pb-3"
-                            style={{ letterSpacing: 1 }}
-                          >
-                            Sign Up
-                          </h5>
-                          <div className="form-outline mb-4">
-                            <input
-                              type="email"
-                              id="form2Example17"
-                              className="form-control form-control-lg"
-                              placeholder="Email Address"
-                              onChange={e => setEmail(e.target.value)}
-                            />
-                          </div>
-                          <div className="form-outline mb-4">
-                            <input
-                              type="text"
-                              id="form2Example17"
-                              className="form-control form-control-lg"
-                              placeholder="Username"
-                              onChange={e => setUsername(e.target.value)}
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img
+          className="mx-auto h-10 w-auto"
+          src="https://www.svgrepo.com/show/301692/login.svg"
+          alt="Workflow"
+        />
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Create a new account
+        </h2>
+        <p className="mt-2 text-center text-sm text-gray-500">
+          Or{" "}
+          <Link
+            to="/login"
+            className="font-medium text-blue-600 hover:text-blue-500 transition duration-150"
+          >
+            login to your account
+          </Link>
+        </p>
+      </div>
 
-                            />
-                          </div>
-                          <div className="form-outline mb-4">
-                            <input
-                              type="password"
-                              id="form2Example17"
-                              className="form-control form-control-lg"
-                              placeholder="Password"
-                              onChange={e => setPassword(e.target.value)}
-
-                            />
-                          </div>
-                          <div className="form-outline mb-4">
-                            <input
-                              type="password"
-                              id="form2Example27"
-                              className="form-control form-control-lg"
-                              placeholder="Confirm Password"
-                              onChange={e => setPassword2(e.target.value)}
-
-                            />
-                          </div>
-                          <div className="pt-1 mb-4">
-                            <button
-                              className="btn btn-dark btn-lg btn-block"
-                              type="submit"
-                            >
-                              Register
-                            </button>
-                          </div>
-                          <a className="small text-muted" href="#!">
-                            Forgot password?
-                          </a>
-                          <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
-                            Already have an account?{" "}
-                            <Link to="/login" style={{ color: "#393f81" }}>
-                              Login Now
-                            </Link>
-                          </p>
-                          <a href="#!" className="small text-muted">
-                            Terms of use.
-                          </a>
-                          <a href="#!" className="small text-muted">
-                            Privacy policy
-                          </a>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <form onSubmit={handleSubmit}>
+            {/* First Name */}
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                First Name
+              </label>
+              <div className="mt-1">
+                <input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
               </div>
             </div>
-          </div>
-        </section>
-        <footer className="bg-light text-center text-lg-start">
-          {/* Copyright */}
-          <div
-            className="text-center p-3"
-            style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
-          >
-            © 2019 - till date Copyright:
-            <a className="text-dark" href="https://mdbootstrap.com/">
-              desphixs.com
-            </a>
-          </div>
-          {/* Copyright */}
-        </footer>
-    </>
 
+            {/* Last Name */}
+            <div className="mt-4">
+              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                Last Name
+              </label>
+              <div className="mt-1">
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="mt-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email address
+              </label>
+              <div className="mt-1">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            {/* Password 1 */}
+            <div className="mt-4">
+              <label htmlFor="password1" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <div className="mt-1">
+                <input
+                  id="password1"
+                  name="password1"
+                  type="password"
+                  required
+                  value={password1}
+                  onChange={(e) => setPassword1(e.target.value)}
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            {/* Password 2 (Confirm Password) */}
+            <div className="mt-4">
+              <label htmlFor="password2" className="block text-sm font-medium text-gray-700">
+                Confirm Password
+              </label>
+              <div className="mt-1">
+                <input
+                  id="password2"
+                  name="password2"
+                  type="password"
+                  required
+                  value={password2}
+                  onChange={(e) => setPassword2(e.target.value)}
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-6">
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150"
+              >
+                Create account
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
-
 
 export default RegisterPage;

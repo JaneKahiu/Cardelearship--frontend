@@ -2,17 +2,20 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
-function Loginpage() {
+function LoginPage() {
   const { loginUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email.length > 0) {
-      loginUser(email, password);
-      navigate("/userdashboard");
+    
+    if (email.length > 0 && password.length > 0) {
+      const success = await loginUser(email, password); // Ensure loginUser returns a success flag
+      if (success) {
+        navigate("/userdashboard");
+      }
     }
   };
 
@@ -25,7 +28,7 @@ function Loginpage() {
               <div className="card" style={{ borderRadius: "1rem" }}>
                 <div className="row g-0">
                   <div className="col-md-6 col-lg-5 d-none d-md-block">
-                  
+                    {/* Add an image or branding here if needed */}
                   </div>
                   <div className="col-md-6 col-lg-7 d-flex align-items-center">
                     <div className="card-body p-4 p-lg-5 text-black">
@@ -107,4 +110,4 @@ function Loginpage() {
   );
 }
 
-export default Loginpage;
+export default LoginPage;
