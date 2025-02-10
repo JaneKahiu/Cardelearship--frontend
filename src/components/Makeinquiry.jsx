@@ -12,7 +12,7 @@ function MakeInquiry() {
     const data = { car: carId, message };
 
     try {
-      await axios.post('http://localhost:8000/api/makeinquiry/', data);
+      await axios.post('http://localhost:8000/api/inquiries/', data);
       alert('Inquiry made successfully!');
       setCarId('');
       setMessage('');

@@ -10,102 +10,101 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (email.length > 0 && password.length > 0) {
-      const success = await loginUser(email, password); // Ensure loginUser returns a success flag
+      const success = await loginUser(email, password);
       if (success) {
-        navigate("/userdashboard");
+        navigate("/user-dashboard");
       }
     }
   };
 
   return (
-    <div>
-      <section className="vh-100" style={{ backgroundColor: "white" }}>
-        <div className="container py-5 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col col-xl-10">
-              <div className="card" style={{ borderRadius: "1rem" }}>
-                <div className="row g-0">
-                  <div className="col-md-6 col-lg-5 d-none d-md-block">
-                    {/* Add an image or branding here if needed */}
-                  </div>
-                  <div className="col-md-6 col-lg-7 d-flex align-items-center">
-                    <div className="card-body p-4 p-lg-5 text-black">
-                      <form onSubmit={handleSubmit}>
-                        <div className="d-flex align-items-center mb-3 pb-1">
-                          <i
-                            className="fas fa-cubes fa-2x me-3"
-                            style={{ color: "#ff6219" }}
-                          />
-                          <span className="h2 fw-bold mb-0">Welcome back 👋</span>
-                        </div>
-                        <h5
-                          className="fw-normal mb-3 pb-3"
-                          style={{ letterSpacing: 1 }}
-                        >
-                          Sign into your account
-                        </h5>
-                        <div className="form-outline mb-4">
-                          <input
-                            type="email"
-                            id="email"
-                            className="form-control form-control-lg"
-                            placeholder="Email Address"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                          />
-                        </div>
-                        <div className="form-outline mb-4">
-                          <input
-                            type="password"
-                            id="password"
-                            className="form-control form-control-lg"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                          />
-                        </div>
-                        <div className="pt-1 mb-4">
-                          <button className="btn btn-dark btn-lg btn-block" type="submit">
-                            Login
-                          </button>
-                        </div>
-                        <a className="small text-muted" href="#!">
-                          Forgot password?
-                        </a>
-                        <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
-                          Don't have an account?{" "}
-                          <Link to="/signup" style={{ color: "#393f81" }}>
-                            Register Now
-                          </Link>
-                        </p>
-                        <a href="#!" className="small text-muted">
-                          Terms of use.
-                        </a>{" "}
-                        |{" "}
-                        <a href="#!" className="small text-muted">
-                          Privacy policy
-                        </a>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 px-6">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img
+          className="mx-auto h-10 w-auto"
+          src="https://www.svgrepo.com/show/301692/login.svg"
+          alt="Login"
+        />
+        <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+          Sign in to your account
+        </h2>
+        <p className="mt-2 text-center text-sm text-blue-500">
+          Or
+          <Link to="/signup" className="font-medium text-blue-500 hover:underline">
+            create a new account
+          </Link>
+        </p>
+      </div>
+
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email address
+              </label>
+              <div className="mt-1">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="user@example.com"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
               </div>
             </div>
-          </div>
+
+            <div className="mt-6">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <div className="mt-1">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6 flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember_me"
+                  name="remember"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
+                  Remember me
+                </label>
+              </div>
+              <div className="text-sm">
+                <a href="#" className="font-medium text-blue-500 hover:underline">
+                  Forgot your password?
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Sign in
+              </button>
+            </div>
+          </form>
         </div>
-      </section>
-      <footer className="bg-light text-center text-lg-start">
-        <div
-          className="text-center p-3"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
-        >
-          © {new Date().getFullYear()} CarDealer. All rights reserved.
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }

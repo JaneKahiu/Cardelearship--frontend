@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
         setUser(jwtDecode(data.access)); // Fixed jwt_decode issue
         localStorage.setItem("authTokens", JSON.stringify(data));
 
-        navigate("/");
+        navigate("/user-dashboard");
         Swal.fire({
           title: "Login Successful",
           icon: "success",

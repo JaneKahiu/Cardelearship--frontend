@@ -5,11 +5,11 @@ import { jwtDecode } from "jwt-decode";
 function Dashboard() {
   const [res, setRes] = useState("");
   const api = useAxios();
-  const token = localStorage.getItem("authTokens"); // Retrieve the token from localStorage
+  const token = localStorage.getItem("authTokens"); 
   
   const [user, setUser] = useState({});
 
-  // Fetching the user data from token on initial load
+  
   useEffect(() => {
     if (token) {
       const decoded = jwtDecode(token);
@@ -22,23 +22,23 @@ function Dashboard() {
     }
   }, [token]);
 
-  // Fetching data when the component mounts
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await api.get("/user-dashboard/", {
           headers: {
-            Authorization: `Bearer ${token}` // Send the token as Authorization header
+            Authorization: `Bearer ${token}` 
           },
         });
-        setRes(response.data.response); // Set response data
+        setRes(response.data.response); 
       } catch (error) {
         console.log(error);
         setRes("Something went wrong");
       }
     };
     if (token) {
-      fetchData(); // Only fetch if token exists
+      fetchData(); 
     }
   }, [api, token]); 
 

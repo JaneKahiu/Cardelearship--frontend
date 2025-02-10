@@ -25,7 +25,7 @@ const App = () => {
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/customer-profile" element={<CustomerProfile />} />
                 <Route path="/makeinquiry" element={<MakeInquiry />} />
-                <Route path="/userdashboard" element={<Dashboard />} />
+                <Route path="/user-dashboard" element={<Dashboard />} />
             </Routes>
             </AuthProvider>
         </Router>
