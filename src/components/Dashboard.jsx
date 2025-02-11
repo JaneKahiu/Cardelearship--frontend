@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import useAxios from "../utils/useAxios"
+import { useState, useEffect } from 'react';
+import useAxios from "../utils/useAxios";
 import { jwtDecode } from "jwt-decode";
 
 function Dashboard() {
@@ -9,7 +9,6 @@ function Dashboard() {
   
   const [user, setUser] = useState({});
 
-  
   useEffect(() => {
     if (token) {
       const decoded = jwtDecode(token);
@@ -22,15 +21,10 @@ function Dashboard() {
     }
   }, [token]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("/user-dashboard/", {
-          headers: {
-            Authorization: `Bearer ${token}` 
-          },
-        });
+        const response = await api.get("/user-dashboard/");
         setRes(response.data.response); 
       } catch (error) {
         console.log(error);
@@ -43,125 +37,47 @@ function Dashboard() {
   }, [api, token]); 
 
   return (
-    <div>
-      <div className="container-fluid" style={{ paddingTop: "100px" }}>
-        <div className="row">
-          <nav className="col-md-2 d-none d-md-block bg-light sidebar mt-4">
-            <div className="sidebar-sticky">
-              <ul className="nav flex-column">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#">
-                    <span data-feather="home" />
-                    Dashboard <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file" />
-                    Orders
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="shopping-cart" />
-                    Products
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="users" />
-                    Customers
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="bar-chart-2" />
-                    Reports
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="layers" />
-                    Integrations
-                  </a>
-                </li>
-              </ul>
-              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Saved reports</span>
-                <a className="d-flex align-items-center text-muted" href="#">
-                  <span data-feather="plus-circle" />
-                </a>
-              </h6>
-              <ul className="nav flex-column mb-2">
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text" />
-                    Current month
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text" />
-                    Last quarter
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text" />
-                    Social engagement
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text" />
-                    Year-end sale
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-              <h1 className="h2">My Dashboard</h1>
-              <span>Hello {user.username}!</span>
-              <div className="btn-toolbar mb-2 mb-md-0">
-                <div className="btn-group mr-2">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Share
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Export
-                  </button>
-                </div>
-                <button className="btn btn-sm btn-outline-secondary dropdown-toggle">
-                  <span data-feather="calendar" />
-                  This week
-                </button>
-              </div>
-            </div>
-            <div className="alert alert-success">
-              <strong>{res}</strong>
-            </div>
-            <h2>Section title</h2>
-            <div className="table-responsive">
-              <table className="table table-striped table-sm">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Your table data goes here */}
-                </tbody>
-              </table>
-            </div>
-          </main>
+    <div className="min-h-screen flex">
+      <nav className="w-64 bg-gray-800 text-white p-5">
+        <h2 className="text-xl font-semibold mb-4">Dashboard</h2>
+        <ul>
+          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Home</a></li>
+          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Orders</a></li>
+          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Products</a></li>
+          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Customers</a></li>
+          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Reports</a></li>
+          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Integrations</a></li>
+        </ul>
+      </nav>
+
+      <main className="flex-1 p-8 bg-gray-100">
+        <div className="flex justify-between items-center border-b pb-3 mb-5">
+          <h1 className="text-2xl font-bold">My Dashboard</h1>
+          <span className="text-lg font-medium">Hello, {user.username}!</span>
         </div>
-      </div>
+
+        <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
+          <strong>{res}</strong>
+        </div>
+
+        <h2 className="text-xl font-semibold mb-3">Section Title</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full border border-gray-300 shadow-md">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="p-2 border">#</th>
+                <th className="p-2 border">Header</th>
+                <th className="p-2 border">Header</th>
+                <th className="p-2 border">Header</th>
+                <th className="p-2 border">Header</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Table data goes here */}
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
   );
 }
