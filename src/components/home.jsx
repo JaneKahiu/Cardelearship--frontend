@@ -3,9 +3,27 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchParams, setSearchParams] = useState({
+    model: '',
+    make: '',
+    minPrice: '',
+    maxPrice: '',
+    location: '',
+  });
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleChange = (e) => {
+    setSearchParams({
+      ...searchParams,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSearch = () => {
+    console.log('Search parameters:', searchParams);
   };
 
   return (
@@ -22,10 +40,7 @@ const HomePage = () => {
 
           {/* Hamburger Menu for Mobile */}
           <div className="lg:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-white focus:outline-none"
-            >
+            <button onClick={toggleMenu} className="text-white focus:outline-none">
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -76,9 +91,9 @@ const HomePage = () => {
         className="min-h-screen bg-cover bg-center flex flex-col justify-center items-center pt-32 text-center relative z-10"
         style={{
           backgroundImage: "url('/images/06j63xy8rg851.jpg')",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
         }}
       >
         {/* Overlay */}
@@ -99,6 +114,45 @@ const HomePage = () => {
         </a>
       </div>
 
+      {/* Car Search Section */}
+      <div className="py-10 bg-gray-100 flex justify-center">
+        <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl w-full">
+          <h2 className="text-2xl font-bold mb-4 text-center">Search for Cars</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input
+              type="text"
+              name="model"
+              placeholder="Model"
+              value={searchParams.model}
+              onChange={handleChange}
+              className="p-2 border rounded w-full"
+            />
+            <input
+              type="text"
+              name="make"
+              placeholder="Make"
+              value={searchParams.make}
+              onChange={handleChange}
+              className="p-2 border rounded w-full"
+            />
+            <input
+              type="text"
+              name="location"
+              placeholder="Location"
+              value={searchParams.location}
+              onChange={handleChange}
+              className="p-2 border rounded w-full"
+            />
+          </div>
+          <button
+            onClick={handleSearch}
+            className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+
       {/* Services Section */}
       <div id="ourservices" className="py-16 md:py-24 bg-white px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto text-center">
@@ -112,10 +166,7 @@ const HomePage = () => {
       </div>
 
       {/* About Us Section */}
-      <div
-        id="about"
-        className="py-16 md:py-24 bg-black text-white px-4 sm:px-6 lg:px-8"
-      >
+      <div id="about" className="py-16 md:py-24 bg-black text-white px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-extrabold">About Us</h2>
           <p className="mt-4 text-base md:text-lg">
