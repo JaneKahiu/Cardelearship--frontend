@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import useAxios from "../utils/useAxios";
 import { jwtDecode } from "jwt-decode";
 
 function Dashboard() {
   const [res, setRes] = useState("");
+  const [error, setError] = useState(null);
   const api = useAxios();
   const token = localStorage.getItem("authTokens"); 
-  
+
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -23,18 +24,19 @@ function Dashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setError(null); // Reset error before making the request
       try {
         const response = await api.get("/user-dashboard/");
-        setRes(response.data.response); 
+        setRes(response.data.response);
       } catch (error) {
-        console.log(error);
-        setRes("Something went wrong");
+        console.error("Error fetching data:", error);
+        setError("Failed to load dashboard data. Please try again later.");
       }
     };
     if (token) {
-      fetchData(); 
+      fetchData();
     }
-  }, [api, token]); 
+  }, [api, token]);
 
   return (
     <div className="min-h-screen flex">
@@ -54,9 +56,17 @@ function Dashboard() {
           <span className="text-lg font-medium">Hello, {user.username}!</span>
         </div>
 
-        <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
-          <strong>{res}</strong>
-        </div>
+        {error && (
+          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+            <strong>{error}</strong>
+          </div>
+        )}
+
+        {res && !error && (
+          <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
+            <strong>{res}</strong>
+          </div>
+        )}
 
         <h2 className="text-xl font-semibold mb-3">Section Title</h2>
         <div className="overflow-x-auto">
