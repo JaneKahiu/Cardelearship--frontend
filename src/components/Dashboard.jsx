@@ -41,12 +41,10 @@ function Dashboard() {
       <nav className="w-64 bg-gray-800 text-white p-5">
         <h2 className="text-xl font-semibold mb-4">Dashboard</h2>
         <ul>
-          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Home</a></li>
+          <li className="mb-2"><a href="/" className="block p-2 rounded hover:bg-gray-700">Home</a></li>
           <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Orders</a></li>
-          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Products</a></li>
-          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Customers</a></li>
+          <li className="mb-2"><a href="/cars" className="block p-2 rounded hover:bg-gray-700">Cars</a></li>
           <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Reports</a></li>
-          <li className="mb-2"><a href="#" className="block p-2 rounded hover:bg-gray-700">Integrations</a></li>
         </ul>
       </nav>
 
